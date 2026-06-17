@@ -9,6 +9,7 @@ interface FormState {
   name: string;
   phone: string;
   industry: string;
+  product: string; // slug sản phẩm quan tâm
 }
 interface FormErr {
   name?: string;
@@ -28,9 +29,15 @@ function readContext(): { sourceSlug?: string; utm?: { source?: string; medium?:
 }
 
 // Form lead → POST proxy nội bộ /api/lead (validate + rate-limit + honeypot + sourceSlug/UTM → BE).
-export default function LeadForm({ industryOptions }: { industryOptions: string[] }) {
+export default function LeadForm({
+  industryOptions,
+  productOptions,
+}: {
+  industryOptions: string[];
+  productOptions: { name: string; slug: string }[];
+}) {
   const { showToast } = useUI();
-  const [form, setForm] = useState<FormState>({ name: '', phone: '', industry: '' });
+  const [form, setForm] = useState<FormState>({ name: '', phone: '', industry: '', product: '' });
   const [err, setErr] = useState<FormErr>({});
   const [hp, setHp] = useState(''); // honeypot — người thật để trống
   const [submitting, setSubmitting] = useState(false);
@@ -67,6 +74,7 @@ export default function LeadForm({ industryOptions }: { industryOptions: string[
           name: form.name.trim(),
           phone: form.phone.trim(),
           industry: form.industry || undefined,
+          productInterest: form.product || undefined,
           sourceSlug,
           utm,
           _hp: hp,
@@ -77,9 +85,9 @@ export default function LeadForm({ industryOptions }: { industryOptions: string[
         showToast(data.error || 'Có lỗi xảy ra, vui lòng thử lại.');
         return;
       }
-      setForm({ name: '', phone: '', industry: '' });
+      setForm({ name: '', phone: '', industry: '', product: '' });
       setErr({});
-      track('lead_submit', { sourceSlug });
+      track('lead_submit', { sourceSlug, productInterest: form.product || undefined });
       showToast('Đã gửi! Đội ngũ MKT sẽ liên hệ bạn sớm.');
     } catch {
       showToast('Lỗi kết nối. Vui lòng thử lại sau giây lát.');
@@ -147,6 +155,23 @@ export default function LeadForm({ industryOptions }: { industryOptions: string[
           {industryOptions.map((ind) => (
             <option key={ind} value={ind}>
               {ind}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label style={{ display: 'block', fontWeight: 700, fontSize: 13.5, color: 'var(--ink)', marginBottom: 7 }}>Phần mềm quan tâm</label>
+        <select
+          value={form.product}
+          onChange={(e) => setForm((s) => ({ ...s, product: e.target.value }))}
+          className={styles.field}
+          style={{ ...baseField, border: '1px solid var(--line)', color: 'var(--ink)', cursor: 'pointer' }}
+        >
+          <option value="">— Chọn phần mềm —</option>
+          {productOptions.map((p) => (
+            <option key={p.slug} value={p.slug}>
+              {p.name}
             </option>
           ))}
         </select>

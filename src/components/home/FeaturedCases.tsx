@@ -14,8 +14,8 @@ export default function FeaturedCases({ cases }: { cases: CaseStudy[] }) {
           <h2 className="balance" style={{ margin: '14px 0 12px', fontWeight: 900, fontSize: 'clamp(28px,3.4vw,42px)', lineHeight: 1.12, color: 'var(--ink)' }}>
             Kết quả thật, không phải lời hứa
           </h2>
-          <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: 'var(--ink-soft)' }}>
-            Mỗi câu chuyện là một con số đo được — chọn ngành của bạn và xem họ đã làm thế nào.
+          <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: 'var(--ink-soft)', whiteSpace: 'nowrap' }}>
+            Mỗi câu chuyện là một con số đo được - chọn ngành của bạn và xem họ đã làm thế nào.
           </p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))', gap: 26 }}>

@@ -1,9 +1,13 @@
 'use client';
 
+import Image from 'next/image';
 import type { VideoReview } from '@/lib/types';
 import { track } from '@/lib/tracking';
 import { useUI } from './UIProvider';
 import styles from './effects.module.css';
+
+// Thumbnail YouTube (hqdefault luôn tồn tại với mọi video).
+const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
 export default function VideoCard({
   video,
@@ -54,11 +58,25 @@ export default function VideoCard({
           overflow: 'hidden',
         }}
       >
+        {v.youtubeId && (
+          <>
+            <Image
+              src={ytThumb(v.youtubeId)}
+              alt={v.title}
+              fill
+              sizes="(max-width:768px) 100vw, 400px"
+              style={{ objectFit: 'cover' }}
+            />
+            {/* lớp phủ nhẹ để badge + nút play luôn nổi rõ trên ảnh */}
+            <span style={{ position: 'absolute', inset: 0, background: 'rgba(10,46,99,.22)', zIndex: 1 }} />
+          </>
+        )}
         <span
           style={{
             position: 'absolute',
             top: 12,
             left: 12,
+            zIndex: 2,
             background: 'var(--orange)',
             color: '#fff',
             fontWeight: 800,
@@ -74,6 +92,7 @@ export default function VideoCard({
             position: 'absolute',
             bottom: 12,
             right: 12,
+            zIndex: 2,
             background: 'rgba(0,0,0,.55)',
             color: '#fff',
             fontWeight: 700,
@@ -86,6 +105,8 @@ export default function VideoCard({
         </span>
         <span
           style={{
+            position: 'relative',
+            zIndex: 2,
             width: 64,
             height: 64,
             borderRadius: '50%',

@@ -8,6 +8,7 @@ import {
   getFeaturedCases,
   getFeaturedVideos,
   getIndustries,
+  getProducts,
   getStats,
   getTestimonials,
 } from '@/lib/content';
@@ -16,12 +17,13 @@ import {
 export const revalidate = 300;
 
 export default async function HomePage() {
-  const [stats, featuredCases, featuredVideos, testimonials, industries] = await Promise.all([
+  const [stats, featuredCases, featuredVideos, testimonials, industries, products] = await Promise.all([
     getStats(),
     getFeaturedCases(3),
     getFeaturedVideos(3),
     getTestimonials(),
     getIndustries(),
+    getProducts(),
   ]);
 
   return (
@@ -33,7 +35,10 @@ export default async function HomePage() {
       {featuredCases.length > 0 && <FeaturedCases cases={featuredCases} />}
       {featuredVideos.length > 0 && <FeaturedVideos videos={featuredVideos} />}
       {testimonials.length > 0 && <WallOfLove testimonials={testimonials} />}
-      <LeadSection industryOptions={industries.map((i) => i.name)} />
+      <LeadSection
+        industryOptions={industries.map((i) => i.name)}
+        productOptions={products.map((p) => ({ name: p.name, slug: p.slug }))}
+      />
     </>
   );
 }

@@ -6,7 +6,7 @@ const PRODUCT_LINKS = ['MKT UID', 'MKT Zalo', 'MKT Care', 'MKT Post'];
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#0A1A30', color: 'rgba(255,255,255,.7)', padding: 'clamp(48px,6vw,72px) 0 32px' }}>
+    <footer style={{ background: '#112B4D', color: 'rgba(255,255,255,.72)', padding: 'clamp(48px,6vw,72px) 0 32px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
         <div
           style={{
@@ -20,9 +20,7 @@ export default function Footer() {
             <div style={{ marginBottom: 14 }}>
               <Logo height={40} light />
             </div>
-            <p style={{ margin: '0 0 16px', fontSize: 14, lineHeight: 1.7 }}>
-              Phần mềm Marketing AI đa kênh #1 Việt Nam. Tự động hoá để bạn chốt đơn thả ga.
-            </p>
+            <p style={{ margin: '0 0 16px', fontSize: 14, lineHeight: 1.7 }}>Phần mềm Marketing AI đa kênh</p>
             <div style={{ display: 'flex', gap: 10 }}>
               {[
                 { icon: 'facebook', alt: 'Facebook' },
@@ -79,14 +77,37 @@ export default function Footer() {
           <div>
             <h4 style={{ margin: '0 0 16px', color: '#fff', fontWeight: 800, fontSize: 15 }}>Liên hệ</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 14 }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 9 }}>
+              <a
+                href="tel:0941113119"
+                className={styles.footerLink}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 9, textDecoration: 'none', color: 'inherit' }}
+              >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                1900 9999
+                0941 113 119
+              </a>
+              <a
+                href="https://mktsoftware.vn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerLink}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 9, textDecoration: 'none', color: 'inherit' }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flex: 'none' }}>
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+                mktsoftware.vn
+              </a>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 9 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flex: 'none' }}>
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                35 Lê Văn Thiêm, Thanh Xuân, HN
               </span>
-              <span>phanmemmkt.vn</span>
-              <span>Toà nhà MKT, Hà Nội</span>
             </div>
           </div>
         </div>
@@ -102,7 +123,7 @@ export default function Footer() {
             fontSize: 13,
           }}
         >
-          <span>© 2026 Phần mềm MKT. Bảo lưu mọi quyền.</span>
+          <span>© 2026 MKT Software. Bảo lưu mọi quyền.</span>
           <span>HIỆU QUẢ – NHANH – DỄ DÙNG</span>
         </div>
       </div>

@@ -78,6 +78,7 @@ export default function Nav() {
             Đăng Ký Ngay
           </Link>
           <Link
+            data-desktop-nav
             href="/#mkt-lead"
             onClick={() => track('cta_click', { location: 'nav' })}
             className={styles.ctaBtn}

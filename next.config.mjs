@@ -3,6 +3,9 @@
 // Suy ra remotePattern cho domain ảnh BE từ API_BASE_URL (chỉ server-side).
 const remotePatterns = [
   { protocol: 'https', hostname: 'cdn.simpleicons.org' },
+  // Thumbnail YouTube
+  { protocol: 'https', hostname: 'i.ytimg.com' },
+  { protocol: 'https', hostname: 'img.youtube.com' },
 ];
 
 if (process.env.API_BASE_URL) {

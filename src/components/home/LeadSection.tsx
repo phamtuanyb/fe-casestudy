@@ -8,7 +8,13 @@ const Check = () => (
   </span>
 );
 
-export default function LeadSection({ industryOptions }: { industryOptions: string[] }) {
+export default function LeadSection({
+  industryOptions,
+  productOptions,
+}: {
+  industryOptions: string[];
+  productOptions: { name: string; slug: string }[];
+}) {
   return (
     <section id="mkt-lead" style={{ padding: 'clamp(56px,7vw,96px) 0', background: 'var(--grad-hero-deep)', position: 'relative', overflow: 'hidden' }}>
       <div
@@ -32,7 +38,7 @@ export default function LeadSection({ industryOptions }: { industryOptions: stri
           padding: '0 24px',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))',
-          gap: 44,
+          gap: 'clamp(44px,6vw,72px)',
           alignItems: 'center',
         }}
       >
@@ -40,11 +46,13 @@ export default function LeadSection({ industryOptions }: { industryOptions: stri
           <span style={{ fontWeight: 800, fontSize: 13, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--gold)' }}>
             Bắt đầu hôm nay
           </span>
-          <h2 className="balance" style={{ margin: '14px 0 16px', fontWeight: 900, fontSize: 'clamp(28px,3.6vw,44px)', lineHeight: 1.1, color: '#fff' }}>
-            Sẵn sàng trở thành câu chuyện tiếp theo?
+          <h2 style={{ margin: '14px 0 16px', fontWeight: 900, fontSize: 'clamp(28px,3.6vw,44px)', lineHeight: 1.1, color: '#fff', whiteSpace: 'nowrap' }}>
+            Sẵn sàng trở thành
+            <br />
+            câu chuyện tiếp theo?
           </h2>
           <p style={{ margin: '0 0 22px', fontSize: 17, lineHeight: 1.6, color: 'rgba(255,255,255,.86)' }}>
-            Để lại thông tin, đội ngũ MKT sẽ tư vấn lộ trình automation phù hợp cho đúng ngành của bạn — miễn phí.
+            Để lại thông tin, đội ngũ MKT Software sẽ tư vấn lộ trình triển khai phù hợp cho đúng ngành của bạn hoàn toàn miễn phí.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: '#fff', fontWeight: 600, fontSize: 15 }}>
@@ -59,7 +67,7 @@ export default function LeadSection({ industryOptions }: { industryOptions: stri
         </div>
 
         <div style={{ background: '#fff', borderRadius: 'var(--r-lg)', boxShadow: 'var(--sh-lg)', padding: 28 }}>
-          <LeadForm industryOptions={industryOptions} />
+          <LeadForm industryOptions={industryOptions} productOptions={productOptions} />
         </div>
       </div>
     </section>

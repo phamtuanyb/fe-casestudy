@@ -21,11 +21,11 @@ export default function FeaturedVideos({ videos }: { videos: VideoReview[] }) {
           <span style={{ fontWeight: 800, fontSize: 13, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--gold)' }}>
             Video thực tế
           </span>
-          <h2 className="balance" style={{ margin: '14px 0 12px', fontWeight: 900, fontSize: 'clamp(28px,3.4vw,42px)', lineHeight: 1.12, color: '#fff' }}>
+          <h2 style={{ margin: '14px 0 12px', fontWeight: 900, fontSize: 'clamp(28px,3.4vw,42px)', lineHeight: 1.12, color: '#fff', whiteSpace: 'nowrap' }}>
             Nghe khách hàng kể, tận mắt xem kết quả
           </h2>
           <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: 'rgba(255,255,255,.82)' }}>
-            Đánh giá, hướng dẫn và phỏng vấn trực tiếp từ người dùng MKT.
+            Đánh giá, hướng dẫn và phỏng vấn trực tiếp từ người dùng MKT Software
           </p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))', gap: 26 }}>
