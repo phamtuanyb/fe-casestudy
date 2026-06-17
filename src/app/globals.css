@@ -1,0 +1,129 @@
+/* ============================================================
+   MKT Showcase — Design tokens (copy nguyên khối từ /design/MKT Showcase.dc.html)
+   KHÔNG đổi giá trị — đây là nguồn chân lý giao diện.
+   ============================================================ */
+:root {
+  --orange: #FF8C00;
+  --orange-600: #F57C00;
+  --gold: #FFD700;
+  --green: #2ECC71;
+  --green-600: #27AE60;
+  --pink: #FF4081;
+
+  --navy-900: #0A2E63;
+  --navy-800: #0D47A1;
+  --blue-700: #1565C0;
+  --blue-600: #1976D2;
+  --blue-500: #1E88E5;
+  --blue-400: #42A5F5;
+  --blue-300: #64B5F6;
+  --blue-100: #BBDEFB;
+  --blue-50: #E8F2FE;
+
+  --white: #fff;
+  --ink: #11253F;
+  --ink-soft: #41556E;
+  --ink-faint: #7B8AA0;
+  --line: #E2E9F2;
+  --surface: #F4F8FD;
+  --surface-2: #EAF2FB;
+
+  --grad-hero: linear-gradient(135deg, #1565C0 0%, #1E88E5 52%, #64B5F6 100%);
+  --grad-hero-deep: linear-gradient(135deg, #0A2E63 0%, #1565C0 55%, #1E88E5 100%);
+  --grad-product: linear-gradient(150deg, #0D47A1 0%, #1565C0 100%);
+  --grad-cta: linear-gradient(135deg, #FF9D2E 0%, #FF8C00 100%);
+  --grad-gold: linear-gradient(135deg, #FFE45C 0%, #FFD700 100%);
+
+  --sh-sm: 0 2px 8px rgba(13, 71, 161, .10);
+  --sh-md: 0 10px 24px rgba(13, 71, 161, .16);
+  --sh-lg: 0 18px 45px rgba(13, 71, 161, .20);
+  --sh-cta: 0 12px 26px rgba(255, 140, 0, .42);
+  --sh-gold: 0 8px 22px rgba(255, 200, 0, .45);
+
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* CTA cuộn mượt tới form, chừa khoảng cho header sticky */
+#mkt-lead {
+  scroll-margin-top: 80px;
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+body {
+  font-family: var(--font-be-vietnam-pro), "Be Vietnam Pro", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(255, 140, 0, .24);
+}
+
+/* ===== Keyframes (giữ nguyên từ thiết kế) ===== */
+@keyframes mktRise {
+  from { opacity: .35; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes mktFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-13px); }
+}
+@keyframes mktBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+@keyframes mktBob2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(11px); }
+}
+@keyframes mktBlob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(36px, -26px) scale(1.12); }
+  66% { transform: translate(-26px, 22px) scale(.92); }
+}
+@keyframes mktPulse {
+  0%, 100% { box-shadow: 0 12px 26px rgba(255, 140, 0, .42); }
+  50% { box-shadow: 0 14px 42px rgba(255, 140, 0, .68); }
+}
+@keyframes mktModalIn {
+  from { opacity: 0; transform: scale(.93); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes mktToastIn {
+  from { opacity: 0; transform: translate(-50%, 18px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ===== Responsive helpers (giữ nguyên hành vi nav/floating CTA) ===== */
+@media (max-width: 880px) {
+  [data-desktop-nav] { display: none !important; }
+  [data-hamburger] { display: inline-flex !important; }
+}
+@media (min-width: 881px) {
+  [data-mobile-menu] { display: none !important; }
+  [data-floating-cta] { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; scroll-behavior: auto !important; }
+}

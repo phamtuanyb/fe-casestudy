@@ -1,0 +1,139 @@
+/* Pseudo-state tương đương style-hover / style-focus / style-active của thiết kế.
+   Giá trị giữ nguyên 100% theo file /design. */
+
+.navLink {
+  transition: color 0.15s, background 0.15s;
+}
+.navLink:hover {
+  background: var(--surface);
+}
+
+/* CTA cam — translateY hover, scale active */
+.ctaBtn {
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.ctaBtn:hover {
+  transform: translateY(-2px);
+}
+.ctaBtn:active {
+  transform: scale(0.96);
+}
+
+/* nút secondary trên nền tối (hero) */
+.ghostBtn {
+  transition: transform 0.15s, background 0.2s;
+}
+.ghostBtn:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+}
+
+/* nút pill viền sáng trên nền tối ("Xem tất cả video") */
+.ghostPillBtn {
+  transition: background 0.15s, transform 0.15s;
+}
+.ghostPillBtn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+/* nút outline xanh ("Xem tất cả câu chuyện", "Xoá bộ lọc") */
+.outlineBtn {
+  transition: background 0.15s, color 0.15s;
+}
+.outlineBtn:hover {
+  background: var(--blue-700);
+  color: #fff;
+}
+
+/* thẻ case / related */
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sh-lg);
+}
+
+/* thẻ video nền tối (home featured) */
+.videoCardDark {
+  transition: transform 0.3s, background 0.3s;
+}
+.videoCardDark:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.13);
+}
+
+/* thẻ video nền sáng (trang video) */
+.videoCardLight {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.videoCardLight:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sh-lg);
+}
+
+/* nút share nhỏ trên thẻ */
+.shareBtn {
+  transition: background 0.15s, color 0.15s;
+}
+.shareBtn:hover {
+  background: var(--blue-700);
+  color: #fff;
+}
+
+/* item trong dropdown ngành */
+.menuItem:hover {
+  background: var(--surface);
+}
+
+/* input / select form */
+.field {
+  transition: border 0.15s, box-shadow 0.15s;
+}
+.field:focus {
+  border: 1px solid var(--blue-500);
+  box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.16);
+  background: #fff;
+}
+
+/* nút back trang chi tiết */
+.backBtn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* nút share mạng xã hội (Zalo/FB) */
+.socialBtn:hover {
+  filter: brightness(1.08);
+}
+
+/* nút copy link */
+.copyBtn:hover {
+  background: var(--surface);
+  color: var(--blue-700);
+}
+
+/* nút đóng modal video */
+.modalClose {
+  transition: transform 0.2s, background 0.2s;
+}
+.modalClose:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: rotate(90deg);
+}
+
+/* link footer */
+.footerLink {
+  transition: color 0.15s;
+}
+.footerLink:hover {
+  color: #fff;
+}
+
+/* nút "Đăng Ký Ngay" / link nav phụ */
+.textLink {
+  transition: color 0.15s;
+}
+.textLink:hover {
+  color: var(--blue-500);
+}
