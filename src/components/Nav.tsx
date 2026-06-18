@@ -8,13 +8,14 @@ import Logo from './Logo';
 import styles from './effects.module.css';
 
 const NAV_LINKS = [
-  { label: 'Trang chủ', href: '/' },
-  { label: 'Câu chuyện', href: '/cau-chuyen' },
-  { label: 'Thư viện video', href: '/video' },
+  { label: 'TRANG CHỦ', href: '/' },
+  { label: 'CÂU CHUYỆN', href: '/cau-chuyen' },
+  { label: 'THƯ VIỆN VIDEO', href: '/video' },
+  { label: 'SẢN PHẨM', href: 'https://mktsoftware.vn/san-pham', external: true },
 ];
 
-const isActive = (pathname: string, href: string) =>
-  href === '/' ? pathname === '/' : pathname.startsWith(href);
+const isActive = (pathname: string, href: string, external?: boolean) =>
+  external ? false : href === '/' ? pathname === '/' : pathname.startsWith(href);
 
 export default function Nav() {
   const pathname = usePathname();
@@ -48,24 +49,26 @@ export default function Nav() {
         </Link>
 
         <nav data-desktop-nav style={{ display: 'flex', gap: 4, marginLeft: 14 }}>
-          {NAV_LINKS.map((lnk) => (
-            <Link
-              key={lnk.href}
-              href={lnk.href}
-              className={styles.navLink}
-              style={{
-                textDecoration: 'none',
-                fontWeight: 700,
-                fontSize: 14.5,
-                padding: '8px 14px',
-                borderRadius: 'var(--r-pill)',
-                color: isActive(pathname, lnk.href) ? 'var(--orange)' : 'var(--ink-soft)',
-                background: 'transparent',
-              }}
-            >
-              {lnk.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((lnk) => {
+            const style: React.CSSProperties = {
+              textDecoration: 'none',
+              fontWeight: 700,
+              fontSize: 14.5,
+              padding: '8px 14px',
+              borderRadius: 'var(--r-pill)',
+              color: isActive(pathname, lnk.href, lnk.external) ? 'var(--orange)' : 'var(--ink-soft)',
+              background: 'transparent',
+            };
+            return lnk.external ? (
+              <a key={lnk.href} href={lnk.href} target="_blank" rel="noopener noreferrer" className={styles.navLink} style={style}>
+                {lnk.label}
+              </a>
+            ) : (
+              <Link key={lnk.href} href={lnk.href} className={styles.navLink} style={style}>
+                {lnk.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 14 }}>
@@ -138,23 +141,25 @@ export default function Nav() {
             gap: 4,
           }}
         >
-          {NAV_LINKS.map((lnk) => (
-            <Link
-              key={lnk.href}
-              href={lnk.href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                textDecoration: 'none',
-                fontWeight: 700,
-                fontSize: 16,
-                padding: '13px 12px',
-                borderRadius: 12,
-                color: isActive(pathname, lnk.href) ? 'var(--orange)' : 'var(--ink-soft)',
-              }}
-            >
-              {lnk.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((lnk) => {
+            const style: React.CSSProperties = {
+              textDecoration: 'none',
+              fontWeight: 700,
+              fontSize: 16,
+              padding: '13px 12px',
+              borderRadius: 12,
+              color: isActive(pathname, lnk.href, lnk.external) ? 'var(--orange)' : 'var(--ink-soft)',
+            };
+            return lnk.external ? (
+              <a key={lnk.href} href={lnk.href} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} style={style}>
+                {lnk.label}
+              </a>
+            ) : (
+              <Link key={lnk.href} href={lnk.href} onClick={() => setMenuOpen(false)} style={style}>
+                {lnk.label}
+              </Link>
+            );
+          })}
           <Link
             href="/#mkt-lead"
             onClick={() => setMenuOpen(false)}

@@ -36,6 +36,10 @@ export interface CaseStudy {
   result: string;
   customerName: string;
   customerRole: string;
+  /** Mục 4 — thông tin liên hệ khách hàng (tùy chọn, chỉ hiện nếu có) */
+  customerPhone?: string;
+  customerEmail?: string;
+  customerChannels?: { platform: string; label?: string; url?: string }[];
   customerAvatar?: Media | null;
   coverImage?: Media | null;
   /** Màu HOẶC gradient CSS — FE dùng làm coverBg */
@@ -46,6 +50,8 @@ export interface CaseStudy {
   featured: boolean;
   published: boolean;
   order: number;
+  /** ID video YouTube nhúng vào trang chi tiết (tùy chọn) */
+  youtubeId?: string;
   seoTitle?: string;
   seoDescription?: string;
 }

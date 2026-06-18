@@ -2,8 +2,6 @@ import Link from 'next/link';
 import Logo from './Logo';
 import styles from './effects.module.css';
 
-const PRODUCT_LINKS = ['MKT UID', 'MKT Zalo', 'MKT Care', 'MKT Post'];
-
 export default function Footer() {
   return (
     <footer style={{ background: '#112B4D', color: 'rgba(255,255,255,.72)', padding: 'clamp(48px,6vw,72px) 0 32px' }}>
@@ -23,12 +21,17 @@ export default function Footer() {
             <p style={{ margin: '0 0 16px', fontSize: 14, lineHeight: 1.7 }}>Phần mềm Marketing AI đa kênh</p>
             <div style={{ display: 'flex', gap: 10 }}>
               {[
-                { icon: 'facebook', alt: 'Facebook' },
-                { icon: 'youtube', alt: 'YouTube' },
-                { icon: 'tiktok', alt: 'TikTok' },
+                { icon: 'facebook', alt: 'Facebook', href: 'https://www.facebook.com/mktsoftware.com.vn' },
+                { icon: 'youtube', alt: 'YouTube', href: 'https://www.youtube.com/@phanmemmktvn' },
+                { icon: 'tiktok', alt: 'TikTok', href: 'https://www.tiktok.com/@kenhmkt0dong' },
               ].map((s) => (
-                <span
+                <a
                   key={s.icon}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.alt}
+                  className={styles.socialBtn}
                   style={{
                     width: 38,
                     height: 38,
@@ -40,17 +43,6 @@ export default function Footer() {
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={`https://cdn.simpleicons.org/${s.icon}/ffffff`} width={18} height={18} alt={s.alt} />
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h4 style={{ margin: '0 0 16px', color: '#fff', fontWeight: 800, fontSize: 15 }}>Sản phẩm</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 14 }}>
-              {PRODUCT_LINKS.map((p) => (
-                <a key={p} className={styles.footerLink} style={{ cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}>
-                  {p}
                 </a>
               ))}
             </div>

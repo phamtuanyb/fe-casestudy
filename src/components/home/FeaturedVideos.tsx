@@ -28,32 +28,54 @@ export default function FeaturedVideos({ videos }: { videos: VideoReview[] }) {
             Đánh giá, hướng dẫn và phỏng vấn trực tiếp từ người dùng MKT Software
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))', gap: 26 }}>
-          {videos.map((v) => (
-            <VideoCard key={v.id} video={v} variant="dark" reveal />
-          ))}
+        {/* Băng chuyền video trong khung — tự chạy phải → trái, lặp liền mạch */}
+        <div className={styles.marqueeViewport} style={{ overflow: 'hidden', padding: '12px 0' }}>
+          <div
+            className={styles.marqueeTrack}
+            style={{
+              display: 'flex',
+              width: 'max-content',
+              alignItems: 'stretch',
+              animationName: 'mktMarquee',
+              animationDuration: `${Math.max(videos.length, 4) * 6}s`,
+              animationTimingFunction: 'linear',
+              animationIterationCount: 'infinite',
+            }}
+          >
+            {[...videos, ...videos].map((v, i) => (
+              <div key={`${v.id}-${i}`} style={{ flex: 'none', width: 360, marginRight: 40, display: 'grid' }}>
+                <VideoCard video={v} variant="dark" />
+              </div>
+            ))}
+          </div>
         </div>
+
         <div style={{ textAlign: 'center', marginTop: 44 }}>
           <Link
             href="/video"
-            className={styles.ghostPillBtn}
+            className={styles.ctaBtn}
             style={{
-              border: '1px solid rgba(255,255,255,.5)',
+              border: 0,
               textDecoration: 'none',
               fontWeight: 800,
-              fontSize: 15,
+              textTransform: 'uppercase',
+              letterSpacing: '.02em',
+              fontSize: 16,
               color: '#fff',
-              background: 'rgba(255,255,255,.12)',
-              backdropFilter: 'blur(4px)',
+              background: 'var(--grad-cta)',
               borderRadius: 'var(--r-pill)',
-              padding: '15px 32px',
+              padding: '17px 40px',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: 10,
+              gap: 12,
+              animation: 'mktCtaBeacon 1.5s ease-in-out infinite',
             }}
           >
+            <span aria-hidden="true" style={{ display: 'inline-block', fontSize: 22, animation: 'mktTap 0.85s ease-in-out infinite' }}>
+              👆
+            </span>
             Xem tất cả video
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
               <line x1="5" y1="12" x2="19" y2="12" />
               <polyline points="12 5 19 12 12 19" />
             </svg>

@@ -12,6 +12,17 @@ import { initialsOf } from '@/lib/format';
 import { getCaseBySlug, getCaseStudies, getRelatedCases } from '@/lib/content';
 import { SITE_NAME, caseUrl } from '@/lib/site';
 
+// Nền tảng kênh truyền thông KH → tên hiển thị + icon (simpleicons).
+const PLATFORM: Record<string, { name: string; icon?: string }> = {
+  facebook: { name: 'Facebook', icon: 'facebook' },
+  zalo: { name: 'Zalo', icon: 'zalo' },
+  tiktok: { name: 'TikTok', icon: 'tiktok' },
+  youtube: { name: 'YouTube', icon: 'youtube' },
+  instagram: { name: 'Instagram', icon: 'instagram' },
+  website: { name: 'Website' },
+  khac: { name: 'Liên kết' },
+};
+
 export const revalidate = 300;
 // Cho phép slug mới (publish sau build) được render on-demand rồi cache (ISR).
 export const dynamicParams = true;
@@ -58,6 +69,8 @@ export default async function CaseDetailPage({ params }: { params: { slug: strin
 
   const related = await getRelatedCases(c, 3);
   const product = c.products[0]?.name ?? '';
+  const channels = c.customerChannels ?? [];
+  const hasContact = Boolean(c.customerPhone || c.customerEmail || channels.length);
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -178,6 +191,32 @@ export default async function CaseDetailPage({ params }: { params: { slug: strin
         </div>
       </section>
 
+      {/* VIDEO (nếu bài có youtubeId) */}
+      {c.youtubeId && (
+        <section style={{ maxWidth: 880, margin: '44px auto 0', padding: '0 24px' }}>
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              paddingTop: '56.25%',
+              borderRadius: 'var(--r-lg)',
+              overflow: 'hidden',
+              boxShadow: 'var(--sh-md)',
+              background: '#000',
+            }}
+          >
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${c.youtubeId}?rel=0&modestbranding=1`}
+              title={c.title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+            />
+          </div>
+        </section>
+      )}
+
       {/* BODY */}
       <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: '#fff' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px', display: 'flex', flexDirection: 'column', gap: 40 }}>
@@ -213,6 +252,58 @@ export default async function CaseDetailPage({ params }: { params: { slug: strin
             </div>
             <RichBody text={c.result} />
           </div>
+
+          {/* 4. Thông tin khách hàng (chỉ hiện nếu có) */}
+          {hasContact && (
+            <div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+                <span style={{ width: 32, height: 32, borderRadius: 9, background: 'rgba(255,140,0,.14)', color: 'var(--orange)', display: 'grid', placeItems: 'center', fontWeight: 900, flex: 'none' }}>4</span>
+                <h2 style={{ margin: 0, fontWeight: 800, fontSize: 24, color: 'var(--ink)' }}>Thông tin khách hàng</h2>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {c.customerPhone && (
+                  <a
+                    href={`tel:${c.customerPhone.replace(/\s/g, '')}`}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', padding: '9px 15px', borderRadius: 'var(--r-pill)', fontWeight: 600, fontSize: 14, color: 'var(--ink)', background: 'var(--surface)', border: '1px solid var(--line)' }}
+                  >
+                    📞 {c.customerPhone}
+                  </a>
+                )}
+                {c.customerEmail && (
+                  <a
+                    href={`mailto:${c.customerEmail}`}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', padding: '9px 15px', borderRadius: 'var(--r-pill)', fontWeight: 600, fontSize: 14, color: 'var(--ink)', background: 'var(--surface)', border: '1px solid var(--line)' }}
+                  >
+                    ✉️ {c.customerEmail}
+                  </a>
+                )}
+                {channels.map((ch, i) => {
+                  const meta = PLATFORM[ch.platform] ?? PLATFORM.khac;
+                  const text = ch.label || meta.name;
+                  const inner = (
+                    <>
+                      {meta.icon ? (
+                        <img src={`https://cdn.simpleicons.org/${meta.icon}/1565c0`} width={16} height={16} alt="" />
+                      ) : (
+                        <span>🔗</span>
+                      )}
+                      {text}
+                    </>
+                  );
+                  const style = { display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', padding: '9px 15px', borderRadius: 'var(--r-pill)', fontWeight: 600, fontSize: 14, color: 'var(--ink)', background: 'var(--surface)', border: '1px solid var(--line)' } as const;
+                  return ch.url ? (
+                    <a key={i} href={ch.url} target="_blank" rel="noopener noreferrer" style={style}>
+                      {inner}
+                    </a>
+                  ) : (
+                    <span key={i} style={style}>
+                      {inner}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* SHARE */}
           <DetailShareRow slug={c.slug} title={c.title} />

@@ -27,7 +27,11 @@ const loadCases = (): Promise<CaseStudy[]> =>
 
 export async function getFeaturedCases(limit = 3): Promise<CaseStudy[]> {
   const all = await loadCases();
-  return all.filter((c) => c.featured).slice(0, limit);
+  const featured = all.filter((c) => c.featured);
+  if (featured.length >= limit) return featured.slice(0, limit);
+  // Chưa đủ số lượng → đổ thêm case published khác (ưu tiên featured trước).
+  const rest = all.filter((c) => !c.featured);
+  return [...featured, ...rest].slice(0, limit);
 }
 
 export interface CaseFilter {

@@ -74,6 +74,9 @@ interface RawCase {
   result?: unknown;
   customerName?: string;
   customerRole?: string;
+  customerPhone?: string;
+  customerEmail?: string;
+  customerChannels?: { platform?: string; label?: string; url?: string }[];
   customerAvatar?: Rel<RawMedia>;
   coverImage?: Rel<RawMedia>;
   coverColor?: string;
@@ -85,6 +88,7 @@ interface RawCase {
   order?: number;
   seoTitle?: string;
   seoDescription?: string;
+  youtubeId?: string;
 }
 interface RawVideo {
   id: string;
@@ -246,6 +250,13 @@ function mapCase(d: RawCase): CaseStudy {
     result: richTextToPlain(d.result),
     customerName: d.customerName ?? '',
     customerRole: d.customerRole ?? '',
+    customerPhone: d.customerPhone || undefined,
+    customerEmail: d.customerEmail || undefined,
+    customerChannels: Array.isArray(d.customerChannels)
+      ? d.customerChannels
+          .filter((ch) => ch && (ch.url || ch.label))
+          .map((ch) => ({ platform: ch.platform || 'khac', label: ch.label, url: ch.url }))
+      : undefined,
     customerAvatar: mediaUrl(d.customerAvatar),
     coverImage: mediaUrl(d.coverImage),
     coverColor: d.coverColor || 'var(--grad-product)',
@@ -255,6 +266,7 @@ function mapCase(d: RawCase): CaseStudy {
     featured: Boolean(d.featured),
     published: Boolean(d.published),
     order: d.order ?? 0,
+    youtubeId: d.youtubeId ?? '',
     seoTitle: d.seoTitle,
     seoDescription: d.seoDescription,
   };
@@ -314,7 +326,7 @@ export interface CaseQuery {
 }
 
 export async function fetchCaseStudies(q: CaseQuery = {}): Promise<CaseStudy[]> {
-  const parts = [PUBLISHED, 'sort=order', 'depth=1', 'limit=100'];
+  const parts = [PUBLISHED, 'sort=order', 'depth=1', 'limit=300'];
   if (q.productSlug) parts.push(`where%5Bproducts.slug%5D%5Bequals%5D=${encodeURIComponent(q.productSlug)}`);
   if (q.industrySlug) parts.push(`where%5Bindustry.slug%5D%5Bequals%5D=${encodeURIComponent(q.industrySlug)}`);
   if (q.featured) parts.push('where%5Bfeatured%5D%5Bequals%5D=true');
@@ -332,7 +344,7 @@ export async function fetchCaseBySlug(slug: string): Promise<CaseStudy | null> {
 }
 
 export async function fetchVideos(): Promise<VideoReview[]> {
-  const res = await apiFetch<PayloadList<RawVideo>>(`/api/video-reviews?${PUBLISHED}&sort=order&depth=1&limit=100`, {
+  const res = await apiFetch<PayloadList<RawVideo>>(`/api/video-reviews?${PUBLISHED}&sort=order&depth=1&limit=300`, {
     tags: ['video-reviews'],
   });
   return res.docs.map(mapVideo);

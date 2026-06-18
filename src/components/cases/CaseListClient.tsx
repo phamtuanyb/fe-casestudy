@@ -93,7 +93,7 @@ export default function CaseListClient({
   return (
     <section style={{ padding: 'clamp(36px,5vw,56px) 0 clamp(56px,7vw,96px)', background: '#fff' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 14, justifyContent: 'space-between', marginBottom: 34 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 18, marginBottom: 34 }}>
           {/* product chips */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, flex: 1, minWidth: 0 }}>
             {productChips.map((p) => {
@@ -122,8 +122,8 @@ export default function CaseListClient({
             })}
           </div>
 
-          {/* industry dropdown */}
-          <div ref={dropdownRef} style={{ position: 'relative', flex: 'none' }}>
+          {/* industry dropdown — đưa lên đầu tiên bên trái cho nổi bật */}
+          <div ref={dropdownRef} style={{ position: 'relative', flex: 'none', order: -1 }}>
             <button
               onClick={() => setIndustryOpen((v) => !v)}
               style={{
@@ -151,7 +151,7 @@ export default function CaseListClient({
                 style={{
                   position: 'absolute',
                   top: 'calc(100% + 8px)',
-                  right: 0,
+                  left: 0,
                   zIndex: 20,
                   background: '#fff',
                   border: '1px solid var(--line)',

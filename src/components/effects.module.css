@@ -137,3 +137,11 @@
 .textLink:hover {
   color: var(--blue-500);
 }
+
+/* Băng chuyền câu chuyện — dừng khi rê chuột (play-state đặt qua CSS, không inline) */
+.marqueeTrack {
+  animation-play-state: running;
+}
+.marqueeViewport:hover .marqueeTrack {
+  animation-play-state: paused;
+}
