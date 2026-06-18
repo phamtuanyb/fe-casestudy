@@ -29,3 +29,6 @@ next-env.d.ts
 
 # logs tạm khi chạy dev
 *.log
+
+# Claude Code local state
+.claude/
