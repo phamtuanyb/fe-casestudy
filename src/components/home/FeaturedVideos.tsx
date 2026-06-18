@@ -5,7 +5,7 @@ import styles from '../effects.module.css';
 
 export default function FeaturedVideos({ videos }: { videos: VideoReview[] }) {
   return (
-    <section style={{ padding: 'clamp(56px,7vw,96px) 0', background: 'var(--grad-hero-deep)', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ padding: 'clamp(28px,4vw,44px) 0', background: 'var(--grad-hero-deep)', position: 'relative', overflow: 'hidden' }}>
       <div
         style={{
           position: 'absolute',
@@ -17,7 +17,7 @@ export default function FeaturedVideos({ videos }: { videos: VideoReview[] }) {
         }}
       />
       <div style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        <div style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 48px' }}>
+        <div style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 32px' }}>
           <span style={{ fontWeight: 800, fontSize: 13, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--gold)' }}>
             Video thực tế
           </span>

@@ -63,7 +63,7 @@ export default function HomeHero() {
           position: 'relative',
           maxWidth: 1200,
           margin: '0 auto',
-          padding: 'clamp(48px,7vw,84px) 24px clamp(96px,9vw,128px)',
+          padding: 'clamp(32px,4vw,52px) 24px clamp(44px,5vw,68px)',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit,minmax(330px,1fr))',
           gap: 48,
@@ -118,7 +118,7 @@ export default function HomeHero() {
           >
             Câu chuyện thật, số liệu thật, gương mặt thật từ khách hàng dùng giải pháp của MKT Software.
           </p>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 30 }}>
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
             <TrackedLink
               href="/cau-chuyen"
               event="cta_click"
@@ -170,18 +170,11 @@ export default function HomeHero() {
               Xem video thực tế
             </Link>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', gap: 2 }}>
-              <Star /><Star /><Star /><Star /><Star />
-            </div>
-            <span style={{ color: '#fff', fontWeight: 800, fontSize: 15 }}>4.9/5</span>
-            <span style={{ color: 'rgba(255,255,255,.7)', fontSize: 14, fontWeight: 500 }}>từ hơn 12.000 đánh giá</span>
-          </div>
         </div>
 
         {/* RIGHT — proof collage */}
-        <div style={{ animation: 'mktRise .8s .12s cubic-bezier(.2,.7,.3,1) both', position: 'relative', minHeight: 440, display: 'grid', placeItems: 'center' }}>
-          <div style={{ position: 'relative', width: '100%', maxWidth: 440, height: 440 }}>
+        <div style={{ animation: 'mktRise .8s .12s cubic-bezier(.2,.7,.3,1) both', position: 'relative', minHeight: 400, display: 'grid', placeItems: 'center' }}>
+          <div style={{ position: 'relative', width: '100%', maxWidth: 420, height: 400 }}>
             <div style={{ position: 'absolute', top: '8%', left: 0, width: 248, background: '#fff', borderRadius: 'var(--r-lg)', boxShadow: 'var(--sh-lg)', padding: 18, animation: 'mktFloat 7s ease-in-out infinite' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 11, marginBottom: 13 }}>
                 <span style={{ width: 42, height: 42, borderRadius: '50%', background: 'linear-gradient(135deg,#FF9D2E,#FF8C00)', display: 'grid', placeItems: 'center', color: '#fff', fontWeight: 900, fontSize: 15, flex: 'none' }}>LA</span>

@@ -9,7 +9,7 @@ const Star = () => (
 
 export default function WallOfLove({ testimonials }: { testimonials: Testimonial[] }) {
   return (
-    <section style={{ padding: 'clamp(56px,7vw,96px) 0', background: 'linear-gradient(180deg,#F4F8FD 0%,#EAF2FB 100%)' }}>
+    <section style={{ padding: 'clamp(32px,4vw,48px) 0', background: 'linear-gradient(180deg,#F4F8FD 0%,#EAF2FB 100%)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 48px' }}>
           <span style={{ fontWeight: 800, fontSize: 13, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--orange)' }}>

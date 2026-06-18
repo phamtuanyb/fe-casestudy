@@ -16,7 +16,7 @@ export default function LeadSection({
   productOptions: { name: string; slug: string }[];
 }) {
   return (
-    <section id="mkt-lead" style={{ padding: 'clamp(56px,7vw,96px) 0', background: 'var(--grad-hero-deep)', position: 'relative', overflow: 'hidden' }}>
+    <section id="mkt-lead" style={{ padding: 'clamp(36px,5vw,56px) 0', background: 'var(--grad-hero-deep)', position: 'relative', overflow: 'hidden' }}>
       <div
         style={{
           position: 'absolute',
